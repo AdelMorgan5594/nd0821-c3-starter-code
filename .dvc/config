@@ -1,0 +1,4 @@
+[core]
+    remote = deployment-udacity-1230179540
+['remote "deployment-udacity-1230179540"']
+    url = s3://deployment-udacity-1230179540
