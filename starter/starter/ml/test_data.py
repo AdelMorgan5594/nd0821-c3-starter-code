@@ -18,7 +18,7 @@ cat_features = [
 
 @pytest.fixture
 def data():
-    df = pd.read_csv('starter/data/census_clean.csv')
+    df = pd.read_csv('./starter/data/census_clean.csv')
     return df
 
 def test_process_data(data):
