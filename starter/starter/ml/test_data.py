@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from starter.starter.ml.data import process_data
+from .data import process_data
 
 
 
