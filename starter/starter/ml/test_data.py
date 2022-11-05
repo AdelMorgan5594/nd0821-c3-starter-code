@@ -1,4 +1,5 @@
 import pytest
+import pandas as pd
 from ml.data import process_data
 
 
