@@ -62,7 +62,7 @@ def compute_model_performance_slice(model, X, categorical_features):
     """
     performance_slice = {}
     for feature in categorical_features:
-        for feature_value in X[feature].unique():
+        for feature_value in X[feature].unique().tolist():
             X_slice,y_slice,_,_ = process_data(X[X[feature] == feature_value], categorical_features, label="salary", training=False, encoder=None, lb=None)
             preds = inference(model, X_slice)
             performance_slice[feature + '_' + feature_value] = compute_model_metrics(y_slice, preds)
