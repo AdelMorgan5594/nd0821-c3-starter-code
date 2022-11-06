@@ -1,6 +1,7 @@
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
-
+from .data import process_data
+import pandas as pd
 
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
@@ -45,6 +46,35 @@ def compute_model_metrics(y, preds):
     precision = precision_score(y, preds, zero_division=1)
     recall = recall_score(y, preds, zero_division=1)
     return precision, recall, fbeta
+
+def compute_model_performance_slice(model, X, categorical_features):
+    """ Compute model performance on a slice from the data.
+
+    Inputs
+    ------
+    model :Trained machine learning model that would run on the data.
+    X : Data used for prediction.
+    categorical_features : list[str]
+        List containing the names of the categorical features.
+    Returns
+    -------
+    performance_slice : the performance o each slice.
+    """
+    performance_slice = {}
+    for feature in categorical_features:
+        for feature_value in X[feature].unique():
+            X_slice,y_slice,_,_ = process_data(X[X[feature] == feature_value], categorical_features, label="salary", training=False, encoder=None, lb=None)
+            preds = inference(model, X_slice)
+            performance_slice[feature + '_' + feature_value] = compute_model_metrics(y_slice, preds)
+
+    all_performance_sliced = pd.DataFrame(performance_slice).T
+    all_performance_sliced.columns = ['precision', 'recall', 'fbeta']
+    all_performance_sliced['slice'] = all_performance_sliced.index
+    all_performance_sliced.reset_index(drop=True, inplace=True)
+
+    return all_performance_sliced
+
+
 
 
 def inference(model, X):
