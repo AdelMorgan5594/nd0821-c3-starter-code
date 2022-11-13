@@ -1,4 +1,5 @@
 import pytest
+import sklearn 
 import pandas as pd
 from .data import process_data
 
