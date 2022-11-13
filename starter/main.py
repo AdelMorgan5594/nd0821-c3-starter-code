@@ -29,7 +29,7 @@ class dataInput(BaseModel):
 
 app = FastAPI()
 
-model = joblib.load(os.path.join('./starter/model', 'rfc_model.pkl'))
+model = joblib.load(os.path.join('./starter/model', 'model.pkl'))
 encoder = joblib.load( os.path.join('./starter/model', 'encoder.pkl'))
 lb = joblib.load(os.path.join('./starter/model', 'lb.pkl'))
 
