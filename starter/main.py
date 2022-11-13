@@ -1,9 +1,11 @@
 # Put the code for your API here.
 from fastapi import FastAPI
 import pandas as pd
+import joblib
 from pydantic import BaseModel, Field
+import os
 from starter.starter.ml.data import process_data
-from starter.starter.ml.model import train_model, compute_model_metrics,inference
+from starter.starter.ml.model import inference
 
 
 class dataInput(BaseModel):
@@ -27,7 +29,10 @@ class dataInput(BaseModel):
 
 app = FastAPI()
 
-#model,lb, encoder = load_model()  ### have to load the pickles i dumped 
+model = joblib.load(os.path.join('./starter/model', 'rfc_model.pkl'))
+encoder = joblib.load( os.path.join('./starter/model', 'encoder.pkl'))
+lb = joblib.load(os.path.join('./starter/model', 'lb.pkl'))
+
 @app.get("/")
 async def root():
     return {"message": "welcome to the API"}
