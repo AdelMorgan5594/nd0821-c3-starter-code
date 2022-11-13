@@ -15,7 +15,7 @@ sys.path.insert(0, file_dir)
 logging.basicConfig(format='%(process)d-%(levelname)s-%(message)s')
 # Add code to load in the data.
 logging.info("Loading data...")
-data = pd.read_csv('starter/data/census_clean.csv')
+data = pd.read_csv('starter/data/census_cleaned.csv')
 
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
@@ -48,11 +48,11 @@ logging.info('Training the model...')
 model = train_model(X_train, y_train)
 
 logging.info('Saving the model...')
-dump(model,file_dir + '/model.pkl')
+dump(model,os.path.join('starter/model' + '/model.pkl'))
 
 logging.info('Saving the encoder and lb...')
-dump(encoder,file_dir + '/encoder.pkl')
-dump(lb,file_dir + '/lb.pkl')
+dump(encoder,os.path.join('starter/model' + '/encoder.pkl'))
+dump(lb,os.path.join('starter/model' + '/lb.pkl'))
 
 logging.info('Computing the model metric...')
 preds = inference(model, X_test)
