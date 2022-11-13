@@ -50,6 +50,10 @@ model = train_model(X_train, y_train)
 logging.info('Saving the model...')
 dump(model,file_dir + '/model.pkl')
 
+logging.info('Saving the encoder and lb...')
+dump(encoder,file_dir + '/encoder.pkl')
+dump(lb,file_dir + '/lb.pkl')
+
 logging.info('Computing the model metric...')
 preds = inference(model, X_test)
 precision, recall, fbeta = compute_model_metrics(y_test, preds)
