@@ -6,15 +6,6 @@ from starter.starter.ml.data import process_data
 from starter.starter.ml.model import train_model, compute_model_metrics,inference
 
 
-
-
-app = FastAPI()
-
-@app.get("/")
-async def root():
-    return {"message": "welcome to the API"}
-
-
 class dataInput(BaseModel):
     age: int = Field(..., example=35)
     workclass: str = Field(..., example="Federal-gov")
@@ -32,7 +23,14 @@ class dataInput(BaseModel):
     native_country: str = Field(
         ..., alias="native-country", example="United-States"
     )
-    
+
+
+app = FastAPI()
+
+model,lb, encoder = load_model()  ### have to load the pickles i dumped 
+@app.get("/")
+async def root():
+    return {"message": "welcome to the API"}
 
 @app.post("/inference/")
 async def predict(item: dataInput):
@@ -42,9 +40,9 @@ async def predict(item: dataInput):
     pred = inference(model, X)
 
     if pred[0]:
-        pred = 'salary': '>50k'
+        pred = {'salary': '>50k'}
     else:
-        pred = 'salary': '<=50k'
+        pred = {'salary': '<=50k'}
     return pred
 
 
