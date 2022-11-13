@@ -3,7 +3,7 @@
 from ast import dump
 import sys
 from sklearn.model_selection import train_test_split
-from ml.model import train_model, compute_model_metrics, inference
+from ml.model import train_model, compute_model_metrics, inference, compute_model_performance_slice
 from ml.data import process_data, load_data
 import os
 import pandas as pd
@@ -49,7 +49,10 @@ model = train_model(X_train, y_train)
 
 logging.info('Saving the model...')
 dump(model,file_dir + '/model.pkl')
-dump(encoder,file_dir + '/encoder.pkl')
-dump(lb,file_dir + '/lb.pkl')
 
+logging.info('Computing the model metric...')
+preds = inference(model, X_test)
+precision, recall, fbeta = compute_model_metrics(y_test, preds)
 
+logging.info('computing the model performance on slices...')
+performance = compute_model_performance_slice(model, test, y_test)
