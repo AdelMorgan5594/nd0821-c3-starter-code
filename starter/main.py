@@ -27,7 +27,7 @@ class dataInput(BaseModel):
 
 app = FastAPI()
 
-model,lb, encoder = load_model()  ### have to load the pickles i dumped 
+#model,lb, encoder = load_model()  ### have to load the pickles i dumped 
 @app.get("/")
 async def root():
     return {"message": "welcome to the API"}
