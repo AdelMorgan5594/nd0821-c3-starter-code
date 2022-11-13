@@ -4,7 +4,7 @@ from ast import dump
 import sys
 from sklearn.model_selection import train_test_split
 from ml.model import train_model, compute_model_metrics, inference, compute_model_performance_slice
-from ml.data import process_data, load_data
+from ml.data import process_data
 import os
 import pandas as pd
 import logging
