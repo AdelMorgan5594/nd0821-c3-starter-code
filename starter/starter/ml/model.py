@@ -47,7 +47,7 @@ def compute_model_metrics(y, preds):
     recall = recall_score(y, preds, zero_division=1)
     return precision, recall, fbeta
 
-def compute_model_performance_slice(model, X, categorical_features):
+def compute_model_performance_slice(model, X, categorical_features, label, encoder, lb):
     """ Compute model performance on a slice from the data.
 
     Inputs
@@ -63,7 +63,7 @@ def compute_model_performance_slice(model, X, categorical_features):
     performance_slice = {}
     for feature in categorical_features:
         for feature_value in X[feature].unique().tolist():
-            X_slice,y_slice,_,_ = process_data(X[X[feature] == feature_value], categorical_features, label="salary", training=False, encoder=None, lb=None)
+            X_slice,y_slice,_,_ = process_data(X[X[feature] == feature_value], categorical_features, label=label, training=False, encoder=encoder, lb=lb)
             preds = inference(model, X_slice)
             performance_slice[feature + '_' + feature_value] = compute_model_metrics(y_slice, preds)
 

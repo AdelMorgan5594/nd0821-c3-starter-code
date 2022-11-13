@@ -1,6 +1,6 @@
 # Script to train machine learning model.
 
-from ast import dump
+import joblib
 import sys
 from sklearn.model_selection import train_test_split
 from ml.model import train_model, compute_model_metrics, inference, compute_model_performance_slice
@@ -48,15 +48,15 @@ logging.info('Training the model...')
 model = train_model(X_train, y_train)
 
 logging.info('Saving the model...')
-dump(model,os.path.join('starter/model' + '/model.pkl'))
+joblib.dump(model,os.path.join('starter/model' + '/model.pkl'))
 
 logging.info('Saving the encoder and lb...')
-dump(encoder,os.path.join('starter/model' + '/encoder.pkl'))
-dump(lb,os.path.join('starter/model' + '/lb.pkl'))
+joblib.dump(encoder,os.path.join('starter/model' + '/encoder.pkl'))
+joblib.dump(lb,os.path.join('starter/model' + '/lb.pkl'))
 
 logging.info('Computing the model metric...')
 preds = inference(model, X_test)
 precision, recall, fbeta = compute_model_metrics(y_test, preds)
 
 logging.info('computing the model performance on slices...')
-performance = compute_model_performance_slice(model, test, y_test)
+performance = compute_model_performance_slice(model, test, categorical_features=cat_features, label="salary", encoder=encoder, lb=lb)
