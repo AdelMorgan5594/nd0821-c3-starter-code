@@ -40,7 +40,7 @@ async def predict(item: dataInput):
     cat_features = ['workclass', 'education', 'marital-status', 'occupation', 'relationship', 'race', 'sex', 'native-country']
     X = pd.DataFrame(data = [item.dict(by_alias=True)], index = [0])
     X,_,_,_ = process_data(X, cat_features, label=None, training=False, encoder=encoder, lb=lb)
-    pred = inference(model, X)[0]
+    pred = inference(model, X)
 
     if pred:
         pred = {'salary': '>50k'}
