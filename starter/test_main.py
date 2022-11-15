@@ -24,8 +24,6 @@ def test_less_than_or_equal_50k():
         "relationship": "Husband",
         "race": " White",
         "sex": "Male",
-        #"capital_gain":"0",
-        #"capital_loss": "0",
         "hours_per_week": "50",
         "native_country": "Yugoslavia",
     } 
@@ -48,8 +46,6 @@ def test_morethan_50k():
         "relationship": "Husband",
         "race": " White",
         "sex": "Male",
-        #"capital_gain":"0",
-        #"capital_loss": "0",
         "hours_per_week": "55",
         "native_country": " United-States",
     } 
