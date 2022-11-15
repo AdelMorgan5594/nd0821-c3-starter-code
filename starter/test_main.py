@@ -31,6 +31,8 @@ def test_less_than_or_equal_50k():
     } 
     r = client.post("/inference/", json=data)
     #assert r.status_code == 200
+    print('####################')
+    print(r.json())
     assert r.json() == {"salary": "<=50k"}
 
 
