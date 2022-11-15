@@ -30,7 +30,7 @@ def test_less_than_or_equal_50k():
         "native_country": "Yugoslavia",
     } 
     r = client.post("/inference/", json=data)
-    assert r.status_code == 200,r.json
+    #assert r.status_code == 200
     assert r.json() == {"salary": "<=50k"}
 
 
@@ -52,5 +52,5 @@ def test_morethan_50k():
         "native_country": " United-States",
     } 
     r = client.post("/inference/", json=data)
-    assert r.status_code == 200,r.json
+    #assert r.status_code == 200
     assert r.json() == {"salary": ">50k"}
