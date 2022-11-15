@@ -24,8 +24,8 @@ def test_less_than_or_equal_50k():
         "relationship": "Husband",
         "race": " White",
         "sex": "Male",
-        "hours_per_week": "50",
-        "native_country": "Yugoslavia",
+        "hours-per-week": "50",
+        "native-country": "Yugoslavia",
     } 
     r = client.post("/inference/", json=data)
     #assert r.status_code == 200
@@ -46,8 +46,8 @@ def test_morethan_50k():
         "relationship": "Husband",
         "race": " White",
         "sex": "Male",
-        "hours_per_week": "55",
-        "native_country": " United-States",
+        "hours-per-week": "55",
+        "native-country": " United-States",
     } 
     r = client.post("/inference/", json=data)
     #assert r.status_code == 200
