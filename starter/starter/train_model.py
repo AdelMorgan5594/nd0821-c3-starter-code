@@ -15,7 +15,7 @@ sys.path.insert(0, file_dir)
 logging.basicConfig(format='%(process)d-%(levelname)s-%(message)s')
 # Add code to load in the data.
 logging.info("Loading data...")
-data = pd.read_csv('starter/data/census_cleaned.csv',index_col=0)
+data = pd.read_csv('starter/data/census_cleaned.csv',index_col=0) 
 
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
