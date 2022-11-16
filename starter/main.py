@@ -42,7 +42,7 @@ async def predict(item: dataInput):
     X,_,_,_ = process_data(X, cat_features, label=None, training=False, encoder=encoder, lb=lb)
     pred = inference(model, X)
 
-    if pred:
+    if pred[0]:
         pred = {'salary': '>50k'}
     else:
         pred = {'salary': '<=50k'}
