@@ -4,8 +4,8 @@ import pandas as pd
 import joblib
 from pydantic import BaseModel, Field
 import os
-from .starter.ml.data import process_data
-from .starter.ml.model import inference
+from starter.starter.ml.data import process_data
+from starter.starter.ml.model import inference
 
 
 class dataInput(BaseModel):
