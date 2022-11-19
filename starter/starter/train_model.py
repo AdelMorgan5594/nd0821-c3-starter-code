@@ -8,6 +8,7 @@ from ml.data import process_data
 import os
 import pandas as pd
 import logging
+import numpy as np
 
 file_dir = os.path.dirname(os.path.abspath("__file__"))
 sys.path.insert(0, file_dir)
@@ -60,3 +61,7 @@ precision, recall, fbeta = compute_model_metrics(y_test, preds)
 
 logging.info('computing the model performance on slices...')
 performance = compute_model_performance_slice(model, test, categorical_features=cat_features, label="salary", encoder=encoder, lb=lb)
+logging.info('Saving the model performance on slices as txt...')
+save_txt_performance = performance.to_numpy()
+np.savetxt('starter/model/slice_output.txt', save_txt_performance, fmt='%s')
+
