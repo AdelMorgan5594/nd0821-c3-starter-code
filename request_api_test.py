@@ -16,6 +16,6 @@ data = {
         "native-country": " United-States",
     } 
 
-response = requests.post("https://thirdprojectudacity.herokuapp.com/", data=json.dumps(data))
+response = requests.post("https://thirdprojectudacity.herokuapp.com/inference/", data=json.dumps(data))
 print(response.status_code)
 print(response.json())
