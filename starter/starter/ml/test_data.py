@@ -19,12 +19,6 @@ def data():
     df = pd.read_csv('starter/data/census_cleaned_copy.csv')
     return df
 
-@pytest.fixture
-def process_data_return():
-    data= pd.read_csv('starter/data/census_cleaned_copy.csv')
-    X, y, encoder, lb = process_data(data, categorical_features=cat_features, label="salary", training=True)
-    return [X, y, encoder, lb]
-
 def test_process_data(data):
     X, y, encoder, lb = process_data(data, categorical_features=cat_features, label="salary", training=True)
     assert X.shape == (32561, 107)
