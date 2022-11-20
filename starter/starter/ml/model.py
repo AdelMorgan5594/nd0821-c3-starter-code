@@ -7,7 +7,6 @@ import pandas as pd
 def train_model(X_train, y_train):
     """
     Trains a machine learning model and returns it.
-
     Inputs
     ------
     X_train : np.array
@@ -29,7 +28,6 @@ def train_model(X_train, y_train):
 def compute_model_metrics(y, preds):
     """
     Validates the trained machine learning model using precision, recall, and F1.
-
     Inputs
     ------
     y : np.array
@@ -49,7 +47,6 @@ def compute_model_metrics(y, preds):
 
 def compute_model_performance_slice(model, X, categorical_features, label, encoder, lb):
     """ Compute model performance on a slice from the data.
-
     Inputs
     ------
     model :Trained machine learning model that would run on the data.
@@ -79,7 +76,6 @@ def compute_model_performance_slice(model, X, categorical_features, label, encod
 
 def inference(model, X):
     """ Run model inferences and return the predictions.
-
     Inputs
     ------
     model : ???
